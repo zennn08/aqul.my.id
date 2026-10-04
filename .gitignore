@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+.DS_Store
+.wrangler/
+
+# brainstorming companion
+.superpowers/
+.playwright-mcp/
+
+# design notes, kept local only
+docs/superpowers/

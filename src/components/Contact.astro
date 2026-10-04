@@ -1,0 +1,48 @@
+---
+import { profile } from "../data/profile";
+
+const links = [
+  ...(profile.email ? [{ label: "Email", href: `mailto:${profile.email}` }] : []),
+  { label: "GitHub", href: profile.github },
+  ...profile.socials,
+];
+---
+
+<section id="contact" class="mx-auto max-w-6xl px-4 py-20">
+  <div class="brutal bg-blue p-8 text-white sm:p-12">
+    <h2 class="font-display text-4xl sm:text-5xl">Ngobrol, yuk.</h2>
+    <p class="mt-4 max-w-xl text-lg">Ada proyek, ide, atau sekadar mau kenalan? Hubungi aku lewat salah satu link di bawah.</p>
+    <ul class="mt-8 flex flex-wrap gap-4">
+      {
+        links.map((l) => {
+          const external = !l.href.startsWith("mailto:");
+          return (
+            <li>
+              <a
+                href={l.href}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noopener" : undefined}
+                class="brutal press block bg-paper px-5 py-2 font-bold text-ink focus-visible:outline-white"
+              >
+                {l.label}
+              </a>
+            </li>
+          );
+        })
+      }
+      {
+        profile.cv && (
+          <li>
+            <a
+              href={profile.cv}
+              download
+              class="brutal press block bg-blue-soft px-5 py-2 font-bold text-ink focus-visible:outline-white"
+            >
+              Download CV
+            </a>
+          </li>
+        )
+      }
+    </ul>
+  </div>
+</section>

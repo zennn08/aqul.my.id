@@ -1,0 +1,6 @@
+/about           /#top       301
+/skills          /#skills    301
+/blog            /           301
+/blog/*          /           301
+/categories      /           301
+/categories/*    /           301

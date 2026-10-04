@@ -1,0 +1,16 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Base title="404 | aqul.my.id" description="Halaman tidak ditemukan.">
+  <Nav />
+  <main class="mx-auto flex max-w-6xl flex-col items-start px-4 py-32">
+    <p class="brutal bg-blue px-6 py-2 font-display text-7xl text-white sm:text-9xl">404</p>
+    <h1 class="mt-10 font-display text-3xl sm:text-4xl">Halaman ini tidak ada.</h1>
+    <p class="mt-4 text-lg">Mungkin sudah dipindah, atau memang tidak pernah ada.</p>
+    <a href="/" class="brutal press mt-8 bg-paper px-6 py-3 font-bold">← Kembali ke beranda</a>
+  </main>
+  <Footer />
+</Base>

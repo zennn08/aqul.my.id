@@ -1,0 +1,23 @@
+---
+import { profile } from "../data/profile";
+---
+
+<section aria-label="Sorotan" class="mx-auto max-w-6xl px-4 pb-8">
+  <dl class="grid grid-cols-2 gap-4 md:auto-cols-fr md:grid-flow-col">
+    {
+      profile.stats.map((s, i) => (
+        <div
+          class:list={[
+            "brutal flex flex-col-reverse gap-1 p-5",
+            i === 0 ? "bg-blue text-white" : "bg-paper",
+            // odd count: first stat spans the 2-col mobile grid so no cell is left empty
+            i === 0 && profile.stats.length % 2 === 1 && "col-span-2 md:col-span-1",
+          ]}
+        >
+          <dt class="font-mono text-xs sm:text-sm">{s.label}</dt>
+          <dd class="font-display text-3xl sm:text-4xl">{s.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>

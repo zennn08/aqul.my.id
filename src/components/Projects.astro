@@ -1,0 +1,31 @@
+---
+import { projects } from "../data/projects";
+import ProjectCard from "./ProjectCard.astro";
+
+// First featured project gets the wide card, the other featured ones sit side by side below it.
+const [lead, ...featured] = projects.filter((p) => p.featured);
+const rest = projects.filter((p) => !p.featured);
+---
+
+<section id="projects" class="mx-auto max-w-6xl px-4 py-20">
+  <h2 class="font-display text-4xl sm:text-5xl">Projects</h2>
+  {lead && <div class="mt-10"><ProjectCard project={lead} variant="lead" /></div>}
+  {
+    featured.length > 0 && (
+      <div class="mt-8 grid gap-8 lg:grid-cols-2">
+        {featured.map((p) => (
+          <ProjectCard project={p} variant="featured" />
+        ))}
+      </div>
+    )
+  }
+  {
+    rest.length > 0 && (
+      <div class:list={["grid gap-8 md:grid-cols-2", lead ? "mt-8" : "mt-10"]}>
+        {rest.map((p) => (
+          <ProjectCard project={p} variant="compact" />
+        ))}
+      </div>
+    )
+  }
+</section>

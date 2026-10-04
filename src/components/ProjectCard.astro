@@ -1,0 +1,66 @@
+---
+import type { Project } from "../data/projects";
+
+interface Props {
+  project: Project;
+  /** lead = wide card, image beside the text on lg. */
+  variant: "lead" | "featured" | "compact";
+}
+
+const { project, variant } = Astro.props;
+const lead = variant === "lead";
+const featured = variant !== "compact";
+---
+
+<article class:list={["brutal flex min-w-0 flex-col bg-paper", lead && "lg:grid lg:grid-cols-[1.2fr_1fr]"]}>
+  {
+    featured && project.image && (
+      <img
+        src={project.image}
+        alt=""
+        width="1200"
+        height="600"
+        loading="lazy"
+        class:list={[
+          "aspect-[2/1] w-full border-b-3 border-ink object-cover",
+          lead && "lg:h-full lg:border-r-3 lg:border-b-0",
+        ]}
+      />
+    )
+  }
+  <div class="flex flex-1 flex-col gap-3 p-5">
+    <h3 class:list={["font-display break-words", featured ? "text-3xl" : "text-xl"]}>{project.title}</h3>
+    <p class="flex-1">{project.description}</p>
+    <ul class="flex flex-wrap gap-2" aria-label="Teknologi">
+      {project.tags.map((t) => <li class="border-2 border-ink bg-blue-soft px-2 py-0.5 font-mono text-xs">{t}</li>)}
+    </ul>
+    <div class="flex flex-wrap gap-3 pt-2">
+      {
+        project.link && (
+          <a
+            href={project.link.href}
+            target="_blank"
+            rel="noopener"
+            aria-label={`${project.link.label} ${project.title}`}
+            class="brutal press bg-blue px-4 py-1.5 text-sm font-bold text-white"
+          >
+            {project.link.label} ↗
+          </a>
+        )
+      }
+      {
+        project.repo && (
+          <a
+            href={project.repo}
+            target="_blank"
+            rel="noopener"
+            aria-label={`Repo ${project.title}`}
+            class="brutal press bg-paper px-4 py-1.5 text-sm font-bold"
+          >
+            Repo ↗
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>

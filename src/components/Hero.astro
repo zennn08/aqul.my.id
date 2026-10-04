@@ -1,0 +1,27 @@
+---
+import { profile } from "../data/profile";
+
+// highlight is guaranteed to be inside name by src/data.test.ts
+const [before, after] = profile.name.split(profile.highlight);
+---
+
+<section id="top" class="mx-auto grid max-w-6xl items-center gap-12 px-4 pt-16 pb-8 lg:grid-cols-[1.4fr_1fr]">
+  <div class="min-w-0">
+    <p class="inline-block border-2 border-ink bg-blue-soft px-2 py-1 font-mono text-sm">{profile.tagline}</p>
+    <h1 class="mt-4 font-display text-5xl leading-[1.05] break-words lg:text-6xl">
+      {before}<span class="text-blue">{profile.highlight}</span>{after}
+    </h1>
+    <p class="mt-6 max-w-xl text-lg">{profile.bio}</p>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a href="#projects" class="brutal press bg-blue px-6 py-3 font-bold text-white">Lihat Proyek →</a>
+      <a href={profile.github} target="_blank" rel="noopener" class="brutal press bg-paper px-6 py-3 font-bold">GitHub</a>
+    </div>
+  </div>
+  <img
+    src={profile.photo}
+    alt={`Foto ${profile.name}`}
+    width="460"
+    height="460"
+    class="brutal mx-auto aspect-square w-full max-w-sm rotate-2 object-cover"
+  />
+</section>
