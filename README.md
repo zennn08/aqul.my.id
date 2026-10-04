@@ -1,6 +1,6 @@
 # aqul.my.id
 
-Portfolio pribadi Akhlaqul Muhammad Fadwa. Astro + Bun + Tailwind CSS v4, di-host di Cloudflare Pages.
+Portfolio pribadi Akhlaqul Muhammad Fadwa. Astro + Bun + Tailwind CSS v4, di-host di Cloudflare Workers.
 
 ## Menjalankan
 
@@ -23,5 +23,11 @@ Semua konten ada di `src/data/`:
 
 ## Deploy
 
-Cloudflare Pages, terhubung ke repo ini. Production branch `main`, build command `bun run build`,
-output `dist`. Setiap push ke `main` otomatis deploy; branch lain dapat preview URL.
+Cloudflare Workers (static assets), terhubung ke repo ini lewat Workers Builds:
+
+- Root directory: kosong (root repo)
+- Build command: `bun run build`
+- Deploy command: `npx wrangler deploy` (membaca `wrangler.jsonc`, menyajikan `dist/`)
+- Build variable: `BUN_VERSION=1.4.2`
+
+Setiap push ke `main` otomatis deploy.
